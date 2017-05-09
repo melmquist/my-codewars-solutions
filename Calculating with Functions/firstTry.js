@@ -1,3 +1,10 @@
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+var x = 8;
+
 function zero() {
   return 0;
 }
@@ -14,11 +21,16 @@ function three() {
 
 function four() {
   if (arguments) {
+    console.log("before: ", arguments);
+    console.log("before typof: ", typeof arguments);
     arguments = Array.prototype.slice.call(arguments);
-    console.log(arguments[0]);
-    // return 4
+    console.log("after: ", arguments);
+    console.log("after typeof: ", typeof arguments);
+    // console.log(arguments[0]);
+    return 4
+  } else {
+    return 4;
   }
-  return 4;
 }
 
 function five() {
@@ -39,6 +51,7 @@ function nine() {
 function ten() {
   return 10;
 }
+
 //FUNCTIONS NOT GETTING CALLED
 function plus(right) {
   return 0 + right;
@@ -53,4 +66,6 @@ function dividedBy(right) {
   return true;
 }
 
-console.log(four(plus(nine())));
+// console.log(four(plus(four())));
+
+console.log(isFunction(zero()));
