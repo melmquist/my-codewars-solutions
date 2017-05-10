@@ -52,7 +52,6 @@ function ten() {
   return 10;
 }
 
-//FUNCTIONS NOT GETTING CALLED
 function plus(right) {
   return 0 + right;
 }
@@ -67,5 +66,8 @@ function dividedBy(right) {
 }
 
 // console.log(four(plus(four())));
+var z = zero;
+var zz = zero();
 
-console.log(isFunction(zero()));
+console.log(isFunction(zz));
+//if it is invoked, then it is straight evaluated to what it returns
