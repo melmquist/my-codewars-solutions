@@ -66,8 +66,19 @@ function dividedBy(right) {
 }
 
 // console.log(four(plus(four())));
+
 var z = zero;
 var zz = zero();
 
-console.log(isFunction(zz));
+// console.log(isFunction( zero() ));
 //if it is invoked, then it is straight evaluated to what it returns
+
+function foo(v) {
+  if(v instanceof Function){
+    console.log("YES FUNC");
+  } else {
+    console.log("NO FUNC");
+  }
+};
+
+foo(zero())
