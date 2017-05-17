@@ -4,9 +4,9 @@ function NamedOne(first, last) {
   this.fullName = this.firstName + ' ' + this.lastName;
 }
 
-// NamedOne.prototype = {
-//
-// }
+NamedOne.prototype = {
+  get fullName
+}
 
 
 var newObj = new NamedOne("Naomi", "Wang");
