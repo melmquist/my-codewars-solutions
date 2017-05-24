@@ -6,7 +6,7 @@ arrangeSeating("AAAABBCC")
 
 function arrangeSeating(input) {
   var index = {};
-  var output;
+  var output = '';
 
   for (var i = 0; i < input.length; i++) {
     if (index.hasOwnProperty(input[i])){
