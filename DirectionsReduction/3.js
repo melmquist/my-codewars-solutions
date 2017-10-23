@@ -1,7 +1,9 @@
 /*
 
-use cache to hold onto last item (but set it as first item )
-if last item index of = -1 and current item index of =-1 then push
+go through, look at each pair.
+when it encounters a pair, take it out and call itself again with new array pair taken out
+Base Case if go through without oppFound being switched to true, then return the array
+
 */ 
 
 const dirReduce = (arr) => {
@@ -9,32 +11,37 @@ const dirReduce = (arr) => {
     if (arr.length < 2) {
         return arr;
     }
-
-    let latOp = ["NORTH", "SOUTH"];
-    let longOp = ["EAST", "WEST"];
-
-    let outputArr = [];
+    
+    
+    let oppFound = false;
     
     let cache = arr[0];
 
     for (i = 1; i <= arr.length - 1; i++) {
         let current = arr[i];
 
-        // if (latOp.indexOf(cache) === -1 && latOp.indexOf(current) === -1) {
-        //     outputArr.push(cache, current);
-        // }
-        
-        // if (longOp.indexOf(cache) === -1 && longOp.indexOf(current) === -1) {
-        //     outputArr.push(cache, current);
-        // }
+        // console.log('pairs: ', cache, current)
 
-        console.log('pairs: ', cache, current)
+        if(cache === "NORTH" && current === "SOUTH"){
+            console.log("OPP FOUND", cache, current)
+        } else if(cache === "SOUTH" && current === "NORTH"){
+            console.log("OPP FOUND", cache, current)
+        } else if(cache === "EAST" && current === "WEST"){
+            console.log("OPP FOUND", cache, current)
+        } else if(cache === "WEST" && current === "EAST"){
+            console.log("OPP FOUND", cache, current)
+        }
+
         cache = current;
         
     }
 
+    // console.log("OUTPUT ARR: ", outputArr)
+
 }
 
 let test1 = ["NORTH", "SOUTH", "EAST", "WEST"];
+let test2 = ["NORTH","NORTH","NORTH", "WEST"];
 
 dirReduce(test1)
+// dirReduce(test2)
