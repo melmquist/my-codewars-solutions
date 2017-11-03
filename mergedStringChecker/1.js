@@ -19,45 +19,79 @@ SOCRATIC APPROACH
             maybe keep bool to hold onto whether or not 2 were found and earlier was taken, so that you could call recursively and do it opposite way
 
 4) redefine success conditions
+    HANDLING EXTRA CHARACTERS 
+        if there is an extra char still left over when the entirety of S has been gone through then you cant make it perfectle
+            so need to check at end of S, are pointers to P1 and P2 also at their end.length-1?
+
 5) repeat 2-4 until all key phrases are actionable 
 6) create strategy from actions
+
+
 */
 
 function isMerge(s, part1, part2) {
     console.log('s: ', s)
+    console.log('s.length: ', s.length)
     console.log('part1: ', part1)
     console.log('part2: ', part2)
-    p1Pointer = 0;
-    p2Pointer = 0;
+    p1Pointer = -1;
+    p2Pointer = -1;
+    let totalP1Length = part1.length - 1;
+    let totalP2Length = part2.length - 1;
+    
+    if(s.length === 0 && part1.length === 0 && part2.length === 0) {
+        return true;
+    }
     if(s.length === 0) {
         return false;
     }
 
     for(var i = 0; i < s.length; i++) {
         let current = s[i];
-
-        if(part1.indexOf(current) > -1 && part1.indexOf(current) >= p1Pointer) {
-            console.log('boom1')
-            p1Pointer = part1.indexOf(current);
-        } else if(part2.indexOf(current) > -1 && part2.indexOf(current) >= p1Pointer) {
-            p2Pointer = part2.indexOf(current);
-            console.log('boom2')            
+        
+        console.log("STARTTTTTTTT")
+        console.log("part1.indexOf(current) -----> ", part1.indexOf(current))
+        console.log("part1.indexOf(current, p1Pointer + 1) -----> ", part1.indexOf(current, p1Pointer + 1))
+        console.log("part2.indexOf(current) -----> ", part2.indexOf(current))
+        console.log("part2.indexOf(current, p2Pointer + 1) -----> ", part2.indexOf(current, p2Pointer + 1))
+        
+        if(part1.indexOf(current) > -1 && part1.indexOf(current, p1Pointer + 1) > -1 && part1.indexOf(current, p1Pointer + 1) === p1Pointer + 1) {
+            console.log('BOOM11111111')
+            // p1Pointer = part1.indexOf(current, p1Pointer + 1);
+            p1Pointer++
+        } else if(part2.indexOf(current) > -1 && part2.indexOf(current, p2Pointer + 1) > -1 && part2.indexOf(current, p2Pointer + 1) === p2Pointer + 1) {
+            console.log('BOOOOOOM2')            
+            // p2Pointer = part2.indexOf(current, p2Pointer + 1);
+            p2Pointer++;
         } else if(part1.indexOf(current) === -1 && part2.indexOf(current) === -1) {
             console.log("NERPNERPNERPEEREDERP")
             return false;
         } 
-
         console.log("i: ", i)
         console.log("current: ", current)
-        console.log("p2Pointer: ", p2Pointer)
         console.log("p1Pointer: ", p1Pointer)
+        console.log("p2Pointer: ", p2Pointer)
+        
     }
-    return true;
+    console.log("p1Pointer: ", p1Pointer)
+    console.log("totalP1Length: ", totalP1Length)
+    console.log("p2Pointer: ", p2Pointer)
+    console.log("totalP2Length: ", totalP2Length)
+    
+    if(p1Pointer === totalP1Length && p2Pointer === totalP2Length) {
+        return true;
+    } else {
+        return false
+    }
+    // return true;
 
 }
-console.log(isMerge('', 'no', 'siree'))
-// 'codewars' is a merge from 'cdw' and 'oears':
 
-// s:  codewars
-// part1:  codewars
-// part2:
+// add one more check to see if its ONLY one more progression from the previous pointer
+
+
+// console.log(isMerge('Z@joI0WqNZ@joI0DqI.QKf,', 'Z@joI0DqI.Q', 'Z@joI0WqNKf,'))
+
+console.log(isMerge('Bananas from Bahamas', 'Bahas', 'Bananas from am'))
+
+
